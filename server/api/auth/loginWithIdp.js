@@ -129,6 +129,6 @@ module.exports = (err, user, req, res, clientID, idpId) => {
         }
       );
 
-      res.redirect(`${rootUrl}${defaultConfirm}#`);
+      res.redirect(`${rootUrl}/confirm#`);
     });
 };
