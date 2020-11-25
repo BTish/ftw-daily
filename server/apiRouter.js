@@ -22,6 +22,8 @@ const { authenticateFacebook, authenticateFacebookCallback } = require('./api/au
 const { authenticateGoogle, authenticateGoogleCallback } = require('./api/auth/google');
 const { authenticateLinkedin, authenticateLinkedinCallback } = require('./api/auth/linkedin');
 
+const { openIdConfiguration, jwksUri } = require('./api-util/idToken');
+
 const router = express.Router();
 
 // ================ API router middleware: ================ //
@@ -88,4 +90,8 @@ router.get('/auth/linkedin', authenticateLinkedin);
 // with Linkedin. In this route a Passport.js custom callback is used for calling
 // loginWithIdp endpoint in Flex API to authenticate user to Flex
 router.get('/auth/linkedin/callback', authenticateLinkedinCallback);
+
+router.get('/.well-known/openid-configuration', openIdConfiguration);
+router.get('/.well-known/jwks.json', jwksUri);
+
 module.exports = router;
